@@ -1,7 +1,5 @@
 import React from 'react';
-import Header from "./Header";
-
-import sale from './assets/img/photoForSale.png'
+import {Header, Categories, sale} from './components'
 
 function App() {
   return (
@@ -10,16 +8,7 @@ function App() {
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <div className="categories">
-              <ul>
-                <li className="active">Все</li>
-                <li>Мясные</li>
-                <li>Веген</li>
-                <li>Гриль</li>
-                <li>Острые</li>
-                <li>Закрытые</li>
-              </ul>
-            </div>
+          <Categories items={[ 'Все', 'Мясные', 'Веген', 'Гриль', 'Острые', 'Закрытые']}/>
             <div className="sort">
               <div className="sort__label">
                 <svg
