@@ -2,6 +2,7 @@
 
 import Header from "./Header";
 import sale from '../assets/img/photoForSale.png'
-import Categories from "./Catefories";
+import Categories from "./Categories";
+import SortPopup from "./SortPopap";
 
-export {Header, sale, Categories}
+export {Header, sale, Categories, SortPopup}
