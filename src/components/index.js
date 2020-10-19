@@ -1,8 +1,7 @@
 //сокращенные импорты
+export { default as Header} from "./Header";
+export {default as sale} from '../assets/img/photoForSale.png'
+export {default as Categories } from "./Categories";
+export {default as SortPopup} from "./SortPopap";
+export {default as BlockSale} from "./BlockSale";
 
-import Header from "./Header";
-import sale from '../assets/img/photoForSale.png'
-import Categories from "./Categories";
-import SortPopup from "./SortPopap";
-
-export {Header, sale, Categories, SortPopup}
