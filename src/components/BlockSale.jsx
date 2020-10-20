@@ -21,7 +21,7 @@ const BlockSale = ({id, imageUrl, name, price, rating, sizes, types}) => {
                     {types.map((type, index) => (
                         <li key={`key_for_type${index}`}
                             onClick={() => onActiveBlock(index)}
-                            className={isActiveBlock === index ? 'active' : ''}>{type === 0 ? 'Small' : 'Big'}</li>
+                            className={isActiveBlock === index ? 'active' : 'disabled'}>{type === 0 ? 'Small' : type === 1 ? 'Big' : ''}</li>
                     ))}
                 </ul>
                 <ul>
