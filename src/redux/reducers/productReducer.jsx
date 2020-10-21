@@ -3,15 +3,16 @@ const initialState = {
     isLoaded: false
 }
 
-const pizzas = (state = initialState, action) => {
+const productForSaleReducer = (state = initialState, action) => {
     switch (action.type){
-        case 'SET_PIZZAS':
+        case 'SET_PRODUCT':
+            debugger
             return {
                 ...state,
-                pizzas: action.payload
+                items: action.payload
             }
         default:
             return state;
     }
 }
-export default pizzas
+export default productForSaleReducer

@@ -3,7 +3,7 @@ const initialState = {
     sortBy: 'popular'
 }
 
-const filters = (state = initialState, action) => {
+const filtersReducer = (state = initialState, action) => {
     switch (action.type){
             case 'SET_SORT_BY':
             return {
@@ -19,4 +19,4 @@ const filters = (state = initialState, action) => {
             return state;
     }
 }
-export default filters
+export default filtersReducer

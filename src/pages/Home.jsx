@@ -2,6 +2,7 @@ import React from 'react'
 import {Categories, BlockSale, SortPopup} from "../components";
 
 const Home = ({data}) => {
+    debugger
     return (
         <div className="container">
             <div className="content__top">

@@ -3,7 +3,7 @@ const initialState = {
     sortBy: 'popular'
 }
 
-const cart = (state = initialState, action) => {
+const cartReducer = (state = initialState, action) => {
     switch (action.type){
         case 'SET_SORT_BY':
             return {
@@ -15,4 +15,4 @@ const cart = (state = initialState, action) => {
             return state;
     }
 }
-export default cart
+export default cartReducer
