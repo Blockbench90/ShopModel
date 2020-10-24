@@ -1,27 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Header} from './components'
 import {Route} from "react-router-dom";
 import {Cart, Home} from "./pages";
 import axios from "axios";
 import {setProduct} from "./redux/action/product";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 
-function App({data, setProduct}) {
-    debugger
+function App() {
+    const dispatch = useDispatch()
     useEffect(() => {
-        axios.get('http://localhost:3000/db.json').then(({data}) => setProduct(data.data))
+        axios.get('http://localhost:3001/data').then(({data}) => dispatch(setProduct(data)))
     }, [])
     return (
         <div className="wrapper">
             <Header/>
             <div className="content">
-                <Route path='/' render={() => <Home data={data}/>} exact/>
-                <Route path='/cart' render={() => <Cart/>} exact/>
+                <Route path='/' component={Home} exact/>
+                <Route path='/cart' component={Cart} exact/>
             </div>
         </div>
     );
 }
-const mapDispatchToProps = state => ({
-    data: state.product.items
-})
-export default connect(mapDispatchToProps, {setProduct})(App);
+// const mapDispatchToProps = state => ({
+//     data: state.product.items
+// })
+export default App;

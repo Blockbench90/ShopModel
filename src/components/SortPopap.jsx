@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from 'react'
 
 
 const SortPopup = ({items}) => {
+    console.log('SortPopup render')
     const [visiblePopup, setVisiblePopup] = useState(false)
     const [activeItem, setActiveItem] = useState(0)
     //отображение активного фильтра

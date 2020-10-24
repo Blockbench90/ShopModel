@@ -6,7 +6,6 @@ const initialState = {
 const productForSaleReducer = (state = initialState, action) => {
     switch (action.type){
         case 'SET_PRODUCT':
-            debugger
             return {
                 ...state,
                 items: action.payload

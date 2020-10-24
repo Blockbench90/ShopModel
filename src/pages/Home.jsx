@@ -1,8 +1,10 @@
 import React from 'react'
 import {Categories, BlockSale, SortPopup} from "../components";
+import {useSelector} from "react-redux";
 
-const Home = ({data}) => {
-    debugger
+const Home = () => {
+    console.log('Home render')
+    const data = useSelector((data) => data.product.items)
     return (
         <div className="container">
             <div className="content__top">
@@ -11,8 +13,7 @@ const Home = ({data}) => {
             </div>
             <h2 className="content__title">Все</h2>
             <div className="content__items">
-                {
-                    data.map((data) => (
+                {data && data.map((data) => (
                         <BlockSale key={data.id} {...data}/>
                     ))
                 }
