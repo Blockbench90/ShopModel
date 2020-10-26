@@ -1,21 +1,17 @@
-import React, {useState} from 'react'
-import {useDispatch} from "react-redux";
-import {setCategory} from "../redux/action/filters";
+import React from 'react'
 
-const Categories = ({items}) => {
-    console.log('Categories render')
-    const dispatch = useDispatch()
-    const [selectItem, setSelectItem] = useState(0)
-    const onSelectedItem = (index) => {
-        setSelectItem(index)
-        dispatch(setCategory(index))
-    }
+const Categories = ({items, activeCategory, onSelectedItem}) => {
     return (
         <div className="categories">
             <ul>
+                <li
+                    className={activeCategory === null ? 'active' : ''}
+                    onClick={() => onSelectedItem(null)}>
+                    Все
+                </li>
                 {items && items.map((item, index) => (
                     <li key={`key_with_index${index}`}
-                        className={selectItem === index ? 'active' : ''}
+                        className={activeCategory === index ? 'active' : ''}
                         onClick={() => onSelectedItem(index)}
                     >{item}</li>
                 ))}

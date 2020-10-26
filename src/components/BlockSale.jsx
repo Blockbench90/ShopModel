@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
 
-const BlockSale = ({id, imageUrl, name, price, rating, sizes, types}) => {
+const BlockSale = ({id, imageUrl, name, price, sizes, types}) => {
     //для активации размера
     const [isActiveSize, setIsActiveSize] = useState(0)
     const onActiveSize = (index) => {setIsActiveSize(index)}
     //для активации блока
     const [isActiveBlock, setIsActiveBlock] = useState(0)
     const onActiveBlock = (index) => {setIsActiveBlock(index)}
+
     return (
         <div className="pizza-block">
             <img

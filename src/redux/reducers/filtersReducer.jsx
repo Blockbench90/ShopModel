@@ -1,6 +1,6 @@
 const initialState = {
-    category: 0,
-    sortBy: 'popular'
+    sortBy: 'popular',
+    category: null
 }
 
 const filtersReducer = (state = initialState, action) => {
@@ -20,3 +20,6 @@ const filtersReducer = (state = initialState, action) => {
     }
 }
 export default filtersReducer
+
+export const setSortBy = (name) => ({ type: 'SET_SORT_BY', payload: name })
+export const setCategory = (catIndex) => ({ type: 'SET_CATEGORY', payload: catIndex })
