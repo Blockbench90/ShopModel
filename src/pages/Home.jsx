@@ -5,24 +5,30 @@ import {fetchProduct} from "../redux/reducers/productReducer";
 import Preloader from "../components/Preloader";
 import {setCategory} from "../redux/reducers/filtersReducer";
 
+const categoryName = ['Мясные', 'Веген', 'Гриль', 'Острые', 'Закрытые']
+const sortItems = [
+    {name: 'Популярности', type: 'popular', order: 'desc'},
+    {name: 'Цене', type: 'price', order: 'desc'},
+    {name: 'Алфавиту', type: 'name', order: 'asc'}
+    ]
+
 const Home = () => {
+    //достаю из редакса нужные мне данные
     const {isLoaded, items} = useSelector(({product}) => product)
     const {category, sortBy} = useSelector(({filters}) => filters)
+    //вместо connect использую хуки, тоесть вместо mapDispatchToProps
     const dispatch = useDispatch()
     useEffect(() => {
-        if(!items.length) {
             dispatch(fetchProduct())
-        }
-    }, [category])
+    }, [category, sortBy])
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
-    console.log(isLoaded, items)
     return (
         <div className="container">
             <div className="content__top">
-                <Categories items={['Все', 'Мясные', 'Веген', 'Гриль', 'Острые', 'Закрытые']} activeCategory={category} onSelectedItem={onSelectCategory}/>
-                <SortPopup items={['Популярности', 'Цене', 'Алфавиту']}/>
+                <Categories items={categoryName} activeCategory={category} onSelectedItem={onSelectCategory}/>
+                <SortPopup items={sortItems}/>
             </div>
             <h2 className="content__title">Все</h2>
             <div className="content__items">
