@@ -2,23 +2,27 @@ import React, {useEffect, useRef, useState} from 'react'
 
 
 
-const SortPopup = ({items}) => {
+const SortPopup = ({items, activeSortType, onClickSortType}) => {
     const [visiblePopup, setVisiblePopup] = useState(false)
-    const [activeItem, setActiveItem] = useState(0)
-    //отображение активного фильтра
-    const activeLabel = items[activeItem].name
+
+    //отображение активного фильтра если будет совпадение в массиве и в том, что в редьюсере придет из Home
+    const activeLabel = items.find((item) => item.type === activeSortType).name
     //переключатель попапа
     const toggleVisiblePopup = () => {
         setVisiblePopup(!visiblePopup)
     }
+    //выбор и диспачь SortPopup
     const onSelectItems = (index) => {
-        setActiveItem(index)
+        if(onClickSortType){
+            onClickSortType(index)
+        }
         setVisiblePopup(false)
     }
     //определение зоны попапа и установка флага в false для закрытия отображения
     const sortRef = useRef()
     const onHandleClick = (e) => {
-        if(!e.path.includes(sortRef.current)){
+        const path = e.path || (e.composedPath && e.composedPath());
+        if(!path.includes(sortRef.current)){
             setVisiblePopup(false)
         }
     }
@@ -28,8 +32,7 @@ const SortPopup = ({items}) => {
     return (
         <div className="sort" ref={sortRef}>
             <div className="sort__label">
-                <svg
-                    className={visiblePopup ? 'rotated' : ''}
+                <svg className={visiblePopup ? 'rotated' : ''}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
@@ -47,8 +50,8 @@ const SortPopup = ({items}) => {
             {visiblePopup && <div className="sort__popup">
                 <ul>
                     {items.map((item, index)=>(
-                        <li onClick={()=> onSelectItems(index)}
-                            className={activeItem === index ? 'active' : ''}
+                        <li onClick={()=> onSelectItems(item)}
+                            className={activeSortType === item.type ? 'active' : ''}
                             key={`identification_${index}`}>{item.name}</li>
                     ))}
                 </ul>

@@ -3,7 +3,7 @@
     {
       "id": 0,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "А - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 803,
@@ -13,7 +13,7 @@
     {
       "id": 1,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "Б - товар",
       "types": [0],
       "sizes": [26, 40],
       "price": 245,
@@ -23,7 +23,7 @@
     {
       "id": 2,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "В - товар",
       "types": [0],
       "sizes": [26, 40],
       "price": 295,
@@ -33,7 +33,7 @@
     {
       "id": 3,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "Г - товар",
       "types": [1],
       "sizes": [26, 30, 40],
       "price": 275,
@@ -43,7 +43,7 @@
     {
       "id": 4,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "Д - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 415,
@@ -53,7 +53,7 @@
     {
       "id": 5,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "Ж - товар",
       "types": [0],
       "sizes": [30, 40],
       "price": 580,
@@ -63,7 +63,7 @@
     {
       "id": 6,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "К - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 675,
@@ -73,7 +73,7 @@
     {
       "id": 7,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "Л - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 450,
@@ -83,7 +83,7 @@
     {
       "id": 8,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара",
+      "name": "М - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 395,
@@ -93,7 +93,7 @@
     {
       "id": 9,
       "imageUrl": "https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg",
-      "name": "Название товара 🌱",
+      "name": "О - товар",
       "types": [0, 1],
       "sizes": [26, 30, 40],
       "price": 285,

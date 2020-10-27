@@ -26,7 +26,8 @@ export default productForSaleReducer
 
 const setProduct = (items) => ({ type: 'SET_PRODUCT', payload: items })
 const setLoaded = (payload) => ({ type: 'SET_LOADED', payload})
-export const fetchProduct = () => (dispatch) => {
+//в зависимости от пришедших category и sortBy бекенд будет делать сортировку
+export const fetchProduct = (category, sortBy) => (dispatch) => {
     dispatch(setLoaded(false))
-    axios.get('http://localhost:3001/data').then(({data}) => dispatch(setProduct(data)))
+    axios.get(`http://localhost:3001/data?${category !== null ? `category=${category}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`).then(({data}) => dispatch(setProduct(data)))
 }

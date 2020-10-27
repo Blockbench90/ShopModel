@@ -11,14 +11,14 @@ const Header = () => {
                 <div className="header__logo">
                     <img width="38" src={logoSVG} alt="Pizza logo" />
                     <div>
-                        <h1>React Pizza</h1>
-                        <p>самая вкусная пицца во вселенной</p>
+                        <h1>Name of Shop</h1>
+                        <p>качество залог нашего успеха</p>
                     </div>
                 </div>
                 </NavLink>
                 <div className="header__cart">
                     <NavLink to='/cart' className="button button--cart">
-                        <span>520 ₽</span>
+                        <span>520 $</span>
                         <div className="button__delimiter"/>
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" >
                             <path

@@ -1,34 +1,38 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {memo, useCallback, useEffect} from 'react'
 import {Categories, BlockSale, SortPopup} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProduct} from "../redux/reducers/productReducer";
 import Preloader from "../components/Preloader";
-import {setCategory} from "../redux/reducers/filtersReducer";
+import {setCategory, setSortBy} from "../redux/reducers/filtersReducer";
 
-const categoryName = ['Мясные', 'Веген', 'Гриль', 'Острые', 'Закрытые']
+const categoryName = ['Железные', 'Золотые', 'Каленные', 'Острые', 'Подленные']
 const sortItems = [
     {name: 'Популярности', type: 'popular', order: 'desc'},
     {name: 'Цене', type: 'price', order: 'desc'},
     {name: 'Алфавиту', type: 'name', order: 'asc'}
     ]
 
-const Home = () => {
+const Home = memo( () => {
     //достаю из редакса нужные мне данные
     const {isLoaded, items} = useSelector(({product}) => product)
     const {category, sortBy} = useSelector(({filters}) => filters)
     //вместо connect использую хуки, тоесть вместо mapDispatchToProps
     const dispatch = useDispatch()
     useEffect(() => {
-            dispatch(fetchProduct())
+            dispatch(fetchProduct(category, sortBy))
     }, [category, sortBy])
+    console.log(category, sortBy, "RENDER")
     const onSelectCategory = useCallback((index) => {
         dispatch(setCategory(index));
     }, []);
+    const onSelectSortType = useCallback((type) => {
+        dispatch(setSortBy(type))
+    }, [])
     return (
         <div className="container">
             <div className="content__top">
                 <Categories items={categoryName} activeCategory={category} onSelectedItem={onSelectCategory}/>
-                <SortPopup items={sortItems}/>
+                <SortPopup items={sortItems} onClickSortType={onSelectSortType} activeSortType={sortBy.type}/>
             </div>
             <h2 className="content__title">Все</h2>
             <div className="content__items">
@@ -38,5 +42,5 @@ const Home = () => {
             </div>
         </div>
     )
-}
+})
 export default Home
