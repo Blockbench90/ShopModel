@@ -19,6 +19,7 @@ const SortPopup = ({items, activeSortType, onClickSortType}) => {
         setVisiblePopup(false)
     }
     //определение зоны попапа и установка флага в false для закрытия отображения
+    //для кросплатформенности довабил || (e.composedPath && e.composedPath()), чтобы и в мозиле правильно работало
     const sortRef = useRef()
     const onHandleClick = (e) => {
         const path = e.path || (e.composedPath && e.composedPath());
