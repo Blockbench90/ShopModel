@@ -6,24 +6,34 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SET_TOTAL_PRICE':
+        //создаст новый масив. Возьмет все старые значения по ключу[action.payload.id]
+        //и в конеч добавь новый обьект
+        case 'ADD_PRODUCT_TO_CART':{
+            const newItems = {
+                //распарси старые данные в state.items
+                ...state.items,
+                //в обьекте items возьми по ключу action.payload.id и если такого еще нету
+                [action.payload.id] : !state.items[action.payload.id]
+                    //создай массив из обьекта, который придет в action.payload
+                    ? [action.payload]
+                    //а если есть такой, то распарси список (проитерируй) items по ключу action.payload.id и добавь в конец весь обьект
+                    //коротый пришел в action.payload
+                    : [...state.items[action.payload.id], action.payload]
+            }
             return {
                 ...state,
-                totalPrice: action.payload
+                items: newItems,
+                //установи сдетчик продуктов из актуального списка обьектов, преобразуя обьект в массив ключей,  выдай количество ключей
+                totalCount: Object.keys(newItems).length
             }
-        case 'SET_TOTAL_COUNT':
-            return {
-                ...state,
-                totalCount: action.payload
-            }
-
+        }
         default:
             return state;
     }
 }
 export default cartReducer
 
-
+export const addProductToCart = (productObj) => ({type: 'ADD_PRODUCT_TO_CART', payload: productObj})
 
 
 

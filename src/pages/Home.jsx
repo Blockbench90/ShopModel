@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchProduct} from "../redux/reducers/productReducer";
 import Preloader from "../components/Preloader";
 import {setCategory, setSortBy} from "../redux/reducers/filtersReducer";
+import {addProductToCart} from "../redux/reducers/cartReducer";
 
 const categoryName = ['Железные', 'Золотые', 'Каленные', 'Острые', 'Подленные']
 const sortItems = [
@@ -28,6 +29,10 @@ const Home = memo( () => {
     const onSelectSortType = useCallback((type) => {
         dispatch(setSortBy(type))
     }, [])
+    //отправка обьекта продукта в редьюсер корзины с данными о продукте из блока BlockSale
+    const onAddProductToCart = (obj) => {
+      dispatch(addProductToCart(obj))
+    }
     return (
         <div className="container">
             <div className="content__top">
@@ -37,7 +42,7 @@ const Home = memo( () => {
             <h2 className="content__title">Все</h2>
             <div className="content__items">
                 {isLoaded
-                    ? items.map((data) => ( <BlockSale key={data.id} {...data}/>))
+                    ? items.map((data) => ( <BlockSale key={data.id} {...data} AddProductToCart={onAddProductToCart}/>))
                     : Array(12).fill(0).map((_, index) => <Preloader key={index}/>) }
             </div>
         </div>
