@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Button from "./Button";
 const activeType = {0: 'Small', 1: 'Big'}
-const BlockSale = ({id, imageUrl, name, price, sizes, types, AddProductToCart}) => {
+const BlockSale = ({id, imageUrl, name, price, sizes, types, AddProductToCart, inCartProducts}) => {
     //для активации размера
     const [isActiveSize, setIsActiveSize] = useState(0)
     const onActiveSize = (index) => {setIsActiveSize(index)}
@@ -47,7 +47,8 @@ const BlockSale = ({id, imageUrl, name, price, sizes, types, AddProductToCart}) 
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
+                    {inCartProducts && <i>{inCartProducts}</i>}
+
                 </Button>
             </div>
         </div>

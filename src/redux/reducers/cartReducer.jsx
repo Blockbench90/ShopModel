@@ -20,11 +20,15 @@ const cartReducer = (state = initialState, action) => {
                     //коротый пришел в action.payload
                     : [...state.items[action.payload.id], action.payload]
             }
+            //чтобы считать не только длинну массива из обьектов, но и одинаковые обьекты, с одинаковым ID
+            const allProducts = [].concat.apply([], Object.values(newItems))
+            //пробегается по массиву обьектов и подсчитывает сумму всех obj.price
+            const totalPrice = allProducts.reduce((sum, obj) => obj.price + sum, 0)
             return {
                 ...state,
                 items: newItems,
-                //установи сдетчик продуктов из актуального списка обьектов, преобразуя обьект в массив ключей,  выдай количество ключей
-                totalCount: Object.keys(newItems).length
+                totalCount: allProducts.length,
+                totalPrice: totalPrice
             }
         }
         default:
