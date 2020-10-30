@@ -4,4 +4,5 @@ export {default as sale} from '../assets/img/photoForSale.png'
 export {default as Categories } from "./Categories";
 export {default as SortPopup} from "./SortPopap";
 export {default as BlockSale} from "./BlockSale";
+export {default as CartItem} from "./CartItem";
 
