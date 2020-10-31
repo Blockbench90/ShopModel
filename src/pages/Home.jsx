@@ -42,7 +42,7 @@ const Home = memo( () => {
             <h2 className="content__title">Все</h2>
             <div className="content__items">
                 {isLoaded
-                    ? items.map((data) => ( <BlockSale key={data.id} AddProductToCart={onAddProductToCart} inCartProducts={productOfCart[data.id] && productOfCart[data.id].length} {...data}/>))
+                    ? items.map((data) => ( <BlockSale key={data.id} AddProductToCart={onAddProductToCart} inCartProducts={productOfCart[data.id] && productOfCart[data.id].items.length} {...data}/>))
                     : Array(12).fill(0).map((_, index) => <Preloader key={index}/>) }
             </div>
         </div>

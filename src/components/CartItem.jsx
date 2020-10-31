@@ -3,7 +3,7 @@ import React from "react";
 
 //компонент для отображения выбранного товара в корзине
 
-const CartItem = ({name, size, type}) => {
+const CartItem = ({name, size, type, totalPrice}) => {
     return (
         <div className="cart__item">
             <div className="cart__item-img">
@@ -35,7 +35,7 @@ const CartItem = ({name, size, type}) => {
                 </div>
             </div>
             <div className="cart__item-price">
-                <b>770 ₽</b>
+                <b>{totalPrice} ₽</b>
             </div>
             <div className="cart__item-remove">
                 <div className="button button--outline button--circle">

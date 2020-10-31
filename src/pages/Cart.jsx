@@ -8,7 +8,7 @@ const Cart = () => {
     const {totalCount, totalPrice, items} = useSelector(({cart}) => cart)
     //достанет ключи одинаковых массивов и исполюзует их для отбора каждого первого обьекта в массиве по этому ключу, в данном случае, по ID
     const products = Object.keys(items).map((key) => {
-        return items[key][0]
+        return items[key].items[0]
     })
     console.log(products)
     return (
@@ -34,7 +34,7 @@ const Cart = () => {
                 </div>
                 <div className="content__items">
                     {
-                        products.map((product) => <CartItem key={`key_for_cart_product${product.id}`} name={product.name} size={product.size} type={product.type}/>)
+                        products.map((product) => <CartItem key={`key_for_cart_product${product.id}`} name={product.name} size={product.size} type={product.type} totalPrice={items[product.id].totalPrice}/>)
                     }
                 </div>
                 <div className="cart__bottom">
