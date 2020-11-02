@@ -1,9 +1,25 @@
 import React from 'react'
 import {CartItem} from "../components";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {clearCart, removeCartItem} from "../redux/reducers/cartReducer";
+import {NavLink} from "react-router-dom";
+import cartEmptyImage from '../assets/img/empty-cart.png'
 
 
 const Cart = () => {
+    //достаем экшн для очистки корзины
+    const dispatch = useDispatch()
+    const onClearCart = () => {
+        if(window.confirm("Вы действительно хотите очистить корзину?")){
+            dispatch(clearCart())
+        }
+    }
+    //удалить продукт из списка выбранных
+    const onRemoveProduct = (id) => {
+        if(window.confirm('Вы действительно хотите удалить из корзины этот продукт?')){
+            dispatch(removeCartItem(id))
+        }
+    }
     //достаем актуальные данные из стейта
     const {totalCount, totalPrice, items} = useSelector(({cart}) => cart)
     //достанет ключи одинаковых массивов и исполюзует их для отбора каждого первого обьекта в массиве по этому ключу, в данном случае, по ID
@@ -13,7 +29,7 @@ const Cart = () => {
     console.log(products)
     return (
         <div className="container container--cart">
-            <div className="cart">
+            {totalCount ? ( <div className="cart">
                 <div className="cart__top">
                     <h2 className="content__title"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.33333 16.3333C7.06971 16.3333 7.66667 15.7364 7.66667 15C7.66667 14.2636 7.06971 13.6667 6.33333 13.6667C5.59695 13.6667 5 14.2636 5 15C5 15.7364 5.59695 16.3333 6.33333 16.3333Z" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -29,12 +45,15 @@ const Cart = () => {
                             <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
 
-                        <span>Очистить корзину</span>
+                        <span onClick={onClearCart}>Очистить корзину</span>
                     </div>
                 </div>
                 <div className="content__items">
                     {
-                        products.map((product) => <CartItem key={`key_for_cart_product${product.id}`} name={product.name} size={product.size} type={product.type} totalPrice={items[product.id].totalPrice}/>)
+                        products.map((product) => <CartItem key={`key_for_cart_product${product.id}`} id={product.id} name={product.name} size={product.size} type={product.type}
+                                                            totalPrice={items[product.id].totalPrice}
+                                                            totalCount={items[product.id].items.length}
+                                                            onRemoveProduct={onRemoveProduct}/>)
                     }
                 </div>
                 <div className="cart__bottom">
@@ -54,7 +73,24 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>)
+                : (
+                    <div className="cart cart--empty">
+                        <h2>
+                            Корзина пустая <i>😕</i>
+                        </h2>
+                        <p>
+                            Вероятней всего, вы еще ничего не заказывали.
+                            <br />
+                            Для того, чтобы сделать заказ, перейдите на главную страницу.
+                        </p>
+                        <img src={cartEmptyImage} alt="Empty cart" />
+                        <NavLink to="/" className="button button--black">
+                            <span>Вернуться назад</span>
+                        </NavLink>
+                    </div>
+                )}
+
         </div>
     )
 }

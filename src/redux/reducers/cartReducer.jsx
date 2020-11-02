@@ -39,13 +39,43 @@ const cartReducer = (state = initialState, action) => {
                 totalPrice: totalPrice
             }
         }
+        //удалить один продукт из списка корзины
+        case 'REMOVE_CART_ITEM': {
+            //сначала создаст копию глобального обьекта items
+            const newItem = {
+                ...state.items
+            }
+            //до удаления скопирует текущие суммы цен и количества
+            const currentTotalPrice = newItem[action.payload].totalPrice
+            const currentTotalCount = newItem[action.payload].items.length
+            //удалит один обьект из продуктов в корзине
+            delete newItem[action.payload]
+            //и вернет текущее, скорректированное состояние
+            return {
+                ...state,
+                items: newItem,
+                totalPrice: state.totalPrice - currentTotalPrice,
+                totalCount: state.totalCount - currentTotalCount
+            }
+        }
+        //очистит корзину, вернув обнуленный, пустой стейт
+        case 'CLEAR_CART':
+            return {
+                items: {},
+                totalPrice: 0,
+                totalCount: 0
+            }
         default:
             return state;
     }
 }
 export default cartReducer
-
+//добавить прилитевший обьект в стейт
 export const addProductToCart = (productObj) => ({type: 'ADD_PRODUCT_TO_CART', payload: productObj})
+//удалить один из выбранных продуктов в корзине
+export const removeCartItem = (id) => ({type: 'REMOVE_CART_ITEM', payload: id})
+//очистить корзину
+export const clearCart = () => ({type: 'CLEAR_CART'})
 
 
 
