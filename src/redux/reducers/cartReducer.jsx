@@ -6,6 +6,16 @@ const initialState = {
 //для подсчета общей суммы цены в массиве
 const getTotalPrice = arr => arr.reduce((sum, obj) => obj.price + sum, 0)
 
+const getCurrentPrice = (newItems) => {
+    //чтобы считать не только длинну массива из обьектов, но и одинаковые обьекты, с одинаковым ID
+    const items = Object.values(newItems).map((obj) => obj.items)
+    const allProducts = [].concat.apply([], items)
+    //пробегается по массиву обьектов и подсчитывает сумму всех obj.price
+    const totalPrice = getTotalPrice(allProducts)
+    const totalCount = allProducts.length
+    return {totalPrice,
+        totalCount}
+}
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         //создаст новый масив. Возьмет все старые значения по ключу[action.payload.id]
@@ -27,16 +37,12 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: getTotalPrice(currentProductItems)
                 }
             }
-            //чтобы считать не только длинну массива из обьектов, но и одинаковые обьекты, с одинаковым ID
-            const items = Object.values(newItems).map((obj) => obj.items)
-            const allProducts = [].concat.apply([], items)
-            //пробегается по массиву обьектов и подсчитывает сумму всех obj.price
-            const totalPrice = getTotalPrice(allProducts)
+            const currentValue = getCurrentPrice(newItems)
             return {
                 ...state,
                 items: newItems,
-                totalCount: allProducts.length,
-                totalPrice: totalPrice
+                totalCount: currentValue.totalCount,
+                totalPrice: currentValue.totalPrice
             }
         }
         //удалить один продукт из списка корзины
@@ -60,11 +66,7 @@ const cartReducer = (state = initialState, action) => {
         }
         //очистит корзину, вернув обнуленный, пустой стейт
         case 'CLEAR_CART':
-            return {
-                items: {},
-                totalPrice: 0,
-                totalCount: 0
-            }
+            return { items: {}, totalPrice: 0, totalCount: 0 }
         case 'PLUS_CART_ITEM': {
             //берет старые значения в items по ключу из экшена и добавляет в конец еще один обьект по этому же ключу и индексом 0
             const newObjItem = [...state.items[action.payload].items, state.items[action.payload].items[0]]
@@ -75,15 +77,13 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: getTotalPrice(newObjItem)
                 }
             }
-            const items = Object.values(newItems).map((obj) => obj.items)
-            const allProducts = [].concat.apply([], items)
-            const totalPrice = getTotalPrice(allProducts)
+            const currentValue = getCurrentPrice(newItems)
             //вернет все старые значения, и в конец запушит новый обьект по ключу из экшена, в котором подсыитает стоимоть
             return {
                 ...state,
                 items: newItems,
-                totalPrice,
-                totalCount: allProducts.length
+                totalPrice: currentValue.totalPrice,
+                totalCount: currentValue.totalCount
             }
         }
         case 'MINUS_CART_ITEM': {
@@ -96,14 +96,12 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: getTotalPrice(newObjItem)
                 }
             }
-            const items = Object.values(newItems).map((obj) => obj.items)
-            const allProducts = [].concat.apply([], items)
-            const totalPrice = getTotalPrice(allProducts)
+            const currentValue = getCurrentPrice(newItems)
             return {
                 ...state,
                 items: newItems,
-                totalPrice,
-                totalCount: allProducts.length
+                totalPrice: currentValue.totalPrice,
+                totalCount: currentValue.totalCount
             }
         }
         default:

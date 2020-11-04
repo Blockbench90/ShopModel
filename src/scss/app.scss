@@ -12,7 +12,7 @@ body {
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;
-  background-color: #fff;
+  background-color: #E0FFFF;
   margin: 0 auto;
   border-radius: 10px;
   max-width: 1400px;
@@ -243,7 +243,6 @@ body {
 
         span {
           color: darken($color: $gray-line, $amount: 20);
-          font-weight: 500;
           font-weight: 600;
         }
 
@@ -291,7 +290,7 @@ body {
       color: #777777;
     }
 
-    icon {
+    i {
       position: relative;
       top: 2px;
     }

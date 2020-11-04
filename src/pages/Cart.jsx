@@ -3,8 +3,8 @@ import {CartItem} from "../components";
 import {useDispatch, useSelector} from "react-redux";
 import {clearCart, minusCartItem, plusCartItem, removeCartItem} from "../redux/reducers/cartReducer";
 import {NavLink} from "react-router-dom";
-import cartEmptyImage from '../assets/img/empty-cart.png'
 import Button from "../components/Button";
+import EmptyCart from "../components/EmptyCart";
 
 
 const Cart = () => {
@@ -53,7 +53,6 @@ const Cart = () => {
                             <path d="M8.33337 9.16667V14.1667" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M11.6666 9.16667V14.1667" stroke="#B6B6B6" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
-
                         <span onClick={onClearCart}>Очистить корзину</span>
                     </div>
                 </div>
@@ -70,7 +69,7 @@ const Cart = () => {
                 <div className="cart__bottom">
                     <div className="cart__bottom-details">
                         <span> Всего пицц: <b>{totalCount} шт.</b> </span>
-                        <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
+                        <span> Сумма заказа: <b>{totalPrice} $</b> </span>
                     </div>
                     <div className="cart__bottom-buttons">
                         <NavLink to="/" className="button button--outline button--add go-back-btn">
@@ -85,22 +84,7 @@ const Cart = () => {
                     </div>
                 </div>
             </div>)
-                : (
-                    <div className="cart cart--empty">
-                        <h2>
-                            Корзина пустая <i>😕</i>
-                        </h2>
-                        <p>
-                            Вероятней всего, вы еще ничего не заказывали.
-                            <br />
-                            Для того, чтобы сделать заказ, перейдите на главную страницу.
-                        </p>
-                        <img src={cartEmptyImage} alt="Empty cart" />
-                        <NavLink to="/" className="button button--black">
-                            <span>Вернуться назад</span>
-                        </NavLink>
-                    </div>
-                )}
+                : (<EmptyCart/>)}
 
         </div>
     )

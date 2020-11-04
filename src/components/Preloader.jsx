@@ -4,7 +4,7 @@ import ContentLoader from 'react-content-loader';
 function Preloader() {
     return (
         <ContentLoader
-            className="pizza-block"
+            className="product-block"
             speed={2}
             width={280}
             height={460}

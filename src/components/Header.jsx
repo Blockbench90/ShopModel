@@ -1,5 +1,5 @@
 import React from "react";
-import logoSVG from "../assets/img/pizza-logo.png";
+import logoSVG from "../assets/img/product-logo.png";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 
@@ -11,7 +11,7 @@ const Header = () => {
             <div className="container">
                 <NavLink to='/'>
                 <div className="header__logo">
-                    <img width="38" src={logoSVG} alt="Pizza logo" />
+                    <img width="38" src={logoSVG} alt="Product logo" />
                     <div>
                         <h1>Name of Shop</h1>
                         <p>качество залог нашего успеха</p>
