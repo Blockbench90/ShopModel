@@ -65,6 +65,47 @@ const cartReducer = (state = initialState, action) => {
                 totalPrice: 0,
                 totalCount: 0
             }
+        case 'PLUS_CART_ITEM': {
+            //берет старые значения в items по ключу из экшена и добавляет в конец еще один обьект по этому же ключу и индексом 0
+            const newObjItem = [...state.items[action.payload].items, state.items[action.payload].items[0]]
+            const newItems = {
+                ...state.items,
+                [action.payload]: {
+                    items: newObjItem,
+                    totalPrice: getTotalPrice(newObjItem)
+                }
+            }
+            const items = Object.values(newItems).map((obj) => obj.items)
+            const allProducts = [].concat.apply([], items)
+            const totalPrice = getTotalPrice(allProducts)
+            //вернет все старые значения, и в конец запушит новый обьект по ключу из экшена, в котором подсыитает стоимоть
+            return {
+                ...state,
+                items: newItems,
+                totalPrice,
+                totalCount: allProducts.length
+            }
+        }
+        case 'MINUS_CART_ITEM': {
+            const oldItems = state.items[action.payload].items
+            const newObjItem = oldItems.length > 1 ? state.items[action.payload].items.slice(1) : oldItems
+            const newItems = {
+                ...state.items,
+                [action.payload]: {
+                    items: newObjItem,
+                    totalPrice: getTotalPrice(newObjItem)
+                }
+            }
+            const items = Object.values(newItems).map((obj) => obj.items)
+            const allProducts = [].concat.apply([], items)
+            const totalPrice = getTotalPrice(allProducts)
+            return {
+                ...state,
+                items: newItems,
+                totalPrice,
+                totalCount: allProducts.length
+            }
+        }
         default:
             return state;
     }
@@ -76,6 +117,10 @@ export const addProductToCart = (productObj) => ({type: 'ADD_PRODUCT_TO_CART', p
 export const removeCartItem = (id) => ({type: 'REMOVE_CART_ITEM', payload: id})
 //очистить корзину
 export const clearCart = () => ({type: 'CLEAR_CART'})
+//добавить в корзину еще один продукт
+export const plusCartItem = (id) => ({type: 'PLUS_CART_ITEM', payload: id})
+//удалить из корзины один продукт
+export const minusCartItem = (id) => ({type: 'MINUS_CART_ITEM', payload: id})
 
 
 

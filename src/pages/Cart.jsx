@@ -1,9 +1,10 @@
 import React from 'react'
 import {CartItem} from "../components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart, removeCartItem} from "../redux/reducers/cartReducer";
+import {clearCart, minusCartItem, plusCartItem, removeCartItem} from "../redux/reducers/cartReducer";
 import {NavLink} from "react-router-dom";
 import cartEmptyImage from '../assets/img/empty-cart.png'
+import Button from "../components/Button";
 
 
 const Cart = () => {
@@ -26,7 +27,15 @@ const Cart = () => {
     const products = Object.keys(items).map((key) => {
         return items[key].items[0]
     })
-    console.log(products)
+    const onPlusCartItem = (id) => {
+        dispatch(plusCartItem(id))
+    }
+    const onMinusCartItem = (id) => {
+        dispatch(minusCartItem(id))
+    }
+    const onPayForAll = () => {
+    console.log("Заказ сделан!", items, totalCount, totalPrice)
+    }
     return (
         <div className="container container--cart">
             {totalCount ? ( <div className="cart">
@@ -53,7 +62,9 @@ const Cart = () => {
                         products.map((product) => <CartItem key={`key_for_cart_product${product.id}`} id={product.id} name={product.name} size={product.size} type={product.type}
                                                             totalPrice={items[product.id].totalPrice}
                                                             totalCount={items[product.id].items.length}
-                                                            onRemoveProduct={onRemoveProduct}/>)
+                                                            onRemoveProduct={onRemoveProduct}
+                                                            plusCartItem={onPlusCartItem}
+                                                            minusCartItem={onMinusCartItem}/>)
                     }
                 </div>
                 <div className="cart__bottom">
@@ -62,15 +73,15 @@ const Cart = () => {
                         <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
                     </div>
                     <div className="cart__bottom-buttons">
-                        <a href="/" className="button button--outline button--add go-back-btn">
+                        <NavLink to="/" className="button button--outline button--add go-back-btn">
                             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <span>Вернуться назад</span>
-                        </a>
-                        <div className="button pay-btn">
+                        </NavLink>
+                        <Button onClick={onPayForAll} className="button pay-btn">
                             <span>Оплатить сейчас</span>
-                        </div>
+                        </Button>
                     </div>
                 </div>
             </div>)

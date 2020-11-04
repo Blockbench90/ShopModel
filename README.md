@@ -1,5 +1,8 @@
  Добавляем SCSS(yarn add node-sass || npm install node-sass)
  Опционально: Достаем настройки CRA проекта(yarn eject || npm run eject)
+ Если компилятор будет ругаться, что-то вроде Error: Node Sass version 5.0.0 is incompatible with ^4.0.0.
+ удали node-sass (yarn remove node-sass | npm uninstall node-sass)
+ и установи корректную версию yarn add node-sass@4.14.1 | npm i node-sass@4.14.1
 
 db.json пример ответа бекенда, после подключения своего, этот удалить
 но чтобы все работало в режиме разработки с реально фейковым "беком", 
