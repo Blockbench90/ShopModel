@@ -1,9 +1,9 @@
 # ShopModel
 ![Product Presentation Image](https://github.com/Blockbench90/ShopModel/blob/main/readmeMD/about.gif)
 
-##[Demo](https://exempleshop.herokuapp.com/)
+## [Demo](https://exempleshop.herokuapp.com/)
 
-## ShopModel - это пример простого интернет - магазина
+## ShopModel - это пример простого интернет-магазина
 Поддержка и развитие является чистой инициативой автора и зависит
 только от наличия свободного времени. По вопросам сюда - 
 [prog.hak.ak@gmail.com](prog.hak.ak@gmail.com).
@@ -26,7 +26,7 @@
 
 - `yarn`
 
-- `yarn server` из корня проекта запускает и фейковый сервер
+- `yarn server` из корня проекта запускает фейковый сервер
 - `yarn start` в новом окне терминала из корня проекта запускает фронт
 
 ## Такс, вот что успелось сделать на данный момент:
