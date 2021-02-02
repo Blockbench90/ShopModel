@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "./Button";
 
-
 //компонент для отображения выбранного товара в корзине
 
 const CartItem = ({id, name, size, type, totalPrice, totalCount, onRemoveProduct, plusCartItem, minusCartItem}) => {
@@ -19,7 +18,7 @@ const CartItem = ({id, name, size, type, totalPrice, totalCount, onRemoveProduct
             <div className="cart__item-img">
                 <img
                     className="product-block__image"
-                    src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                    src="https://posrednik-v-kitae.ru/wp-content/uploads/2017/08/%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B01-231x231.jpg"
                     alt="Pizza"
                 />
             </div>

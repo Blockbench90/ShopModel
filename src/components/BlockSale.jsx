@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import Button from "./Button";
+
+
 const activeType = {0: 'Small', 1: 'Big'}
+
 const BlockSale = ({id, imageUrl, name, price, sizes, types, AddProductToCart, inCartProducts}) => {
     //для активации размера
     const [isActiveSize, setIsActiveSize] = useState(0)

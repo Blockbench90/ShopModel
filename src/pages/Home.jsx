@@ -18,7 +18,7 @@ const Home = memo( () => {
     const {isLoaded, items} = useSelector(({product}) => product)
     const {category, sortBy} = useSelector(({filters}) => filters)
     const productOfCart = useSelector(({cart}) => cart.items)
-    //вместо connect использую хуки, тоесть вместо mapDispatchToProps
+    //вместо connect использую хуки
     const dispatch = useDispatch()
     useEffect(() => {
             dispatch(fetchProduct(category, sortBy))
@@ -42,7 +42,10 @@ const Home = memo( () => {
             <h2 className="content__title">Все</h2>
             <div className="content__items">
                 {isLoaded
-                    ? items.map((data) => ( <BlockSale key={data.id} AddProductToCart={onAddProductToCart} inCartProducts={productOfCart[data.id] && productOfCart[data.id].items.length} {...data}/>))
+                    ? items.map((data) => ( <BlockSale key={data.id} AddProductToCart={onAddProductToCart}
+                                                       inCartProducts={productOfCart[data.id]
+                                                       && productOfCart[data.id].items.length}
+                                                       {...data}/>))
                     : Array(12).fill(0).map((_, index) => <Preloader key={index}/>) }
             </div>
         </div>
